@@ -5,10 +5,6 @@ using UnityEngine;
 public class playerCam : MonoBehaviour
 {
     /// <summary>
-    /// 
-    /// 
-    /// 
-    /// 
     /// tilinTarjeta();
     /// 
     /// 
@@ -24,9 +20,11 @@ public class playerCam : MonoBehaviour
     [SerializeField]private float senseY;
 
     public Transform orientation;
+    //public Transform weapon;
 
     private float rotationX;
     private float rotationY;
+    private float rotationZ;
 
     void Start()
     {
@@ -46,6 +44,8 @@ public class playerCam : MonoBehaviour
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
         transform.rotation = Quaternion.Euler(rotationX,rotationY,0f);
+
         orientation.rotation = Quaternion.Euler(0f, rotationY, 0f);
+        //weapon.rotation = Quaternion.Euler(rotationX , rotationY, 0f);
     }
 }

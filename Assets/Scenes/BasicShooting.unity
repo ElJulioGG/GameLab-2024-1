@@ -1422,7 +1422,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80323984}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &80323987
 Camera:
   m_ObjectHideFlags: 0
@@ -4341,8 +4341,10 @@ MonoBehaviour:
   standCollider: {fileID: 0}
   crouchCollider: {fileID: 0}
   cameraPosition: {fileID: 0}
+  maxSpeed: 10
   groundDrag: 0
   airDrag: 0
+  dashspeed: 0
   jumpForce: 1
   jumpCooldown: 0
   airMultiplier: 1
@@ -4361,6 +4363,7 @@ MonoBehaviour:
   crouchYColScale: 0
   orientation: {fileID: 928965317}
   state: 0
+  dashing: 0
 --- !u!1 &1046742032
 GameObject:
   m_ObjectHideFlags: 0
