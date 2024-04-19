@@ -20,6 +20,7 @@ public class MovementPlayer : MonoBehaviour
 
     [Header("Movement")]
     private float moveSpeed;
+    public float maxSpeed = 10f; // Set your desired max speed here
 
     public float groundDrag;
     public float airDrag;
@@ -125,14 +126,11 @@ public class MovementPlayer : MonoBehaviour
         else
             rb.drag = airDrag;
 
-
-
-
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        MovePlayer2();
     }
 
     private void MyInput()
@@ -181,7 +179,27 @@ public class MovementPlayer : MonoBehaviour
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
+    
 
+    private void MovePlayer2()
+    {
+        // calculate movement direction
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        // on ground
+        if (grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        // in air
+        else if (!grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+
+        // limit player's speed to maxSpeed
+        if (rb.velocity.magnitude > maxSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+    }
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
