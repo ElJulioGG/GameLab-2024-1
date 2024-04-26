@@ -25,6 +25,7 @@ public class MovementPlayer : MonoBehaviour
     public float groundDrag;
     public float airDrag;
     public float dashspeed;
+    public float dashSpeedChangeFactor;
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
@@ -43,6 +44,7 @@ public class MovementPlayer : MonoBehaviour
     public float playerHeight;
     public LayerMask ground;
     [SerializeField] bool grounded;
+
 
     [Header("Crouch")]
 
@@ -71,37 +73,89 @@ public class MovementPlayer : MonoBehaviour
 
     public bool dashing;
 
+    private float desiredMoveSpeed;
+    private float lastdesiredMoveSpeed;
+    private MovementState lastState;
+    private bool keepMomentum;
+
     public void StateHandler()
     {
         //Mode - Dashing
         if (dashing)
         {
             state = MovementState.dashing;
-            moveSpeed = dashspeed;
+            desiredMoveSpeed = dashspeed;
+            speedChangeFactor = dashSpeedChangeFactor;
         }
 
         if (grounded && Input.GetKey(sprintKey) && state != MovementState.crouching)
         {
             state = MovementState.sprinting;
-            moveSpeed = sprintSpeed;
+            desiredMoveSpeed = sprintSpeed;
         }
         else if (grounded && Input.GetKey(crouchKey) && state != MovementState.sprinting)
         {
 
             state = MovementState.crouching;
-            moveSpeed = crouchSpeed;
+            desiredMoveSpeed = crouchSpeed;
         }
         else if (grounded)
         {
             state = MovementState.walking;
-            moveSpeed = walkSpeed;
+            desiredMoveSpeed = walkSpeed;
         }
         else
         {
+
             state = MovementState.air;
+
+            if (desiredMoveSpeed < sprintSpeed)
+                desiredMoveSpeed = walkSpeed;
+            else
+                desiredMoveSpeed = sprintSpeed;
+
         }
 
+        bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastdesiredMoveSpeed;
+        if (lastState == MovementState.dashing) keepMomentum = true;
+        if (desiredMoveSpeedHasChanged)
+        {
+            if (keepMomentum)
+            {
+                StopAllCoroutines();
+                StartCoroutine(SmoothlyLerpMoveSpeed());
+            }
+            else
+            {
+                moveSpeed = desiredMoveSpeed;
+            }
+        }
+        lastdesiredMoveSpeed = desiredMoveSpeed;
+        lastState = state;
     }
+
+    private float speedChangeFactor;
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - moveSpeed);
+        float startValue = moveSpeed;
+
+        float boostFactor = speedChangeFactor;
+        
+        while(time < difference)
+        {
+            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
+            time += Time.deltaTime * boostFactor;
+
+            yield return null;
+        }
+        moveSpeed = desiredMoveSpeed;
+        speedChangeFactor = 1f;
+        keepMomentum = false;
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -178,8 +232,10 @@ public class MovementPlayer : MonoBehaviour
         // in air
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        
+
     }
-    
+
 
     private void MovePlayer2()
     {

@@ -6,6 +6,7 @@ public class Dashing : MonoBehaviour
 {
     [Header("References")]
     public Transform orientation;
+    public Transform PlayerVirtualCamera;
     private Rigidbody rb;
     private MovementPlayer pm;
 
@@ -14,7 +15,12 @@ public class Dashing : MonoBehaviour
     public float dashUpwardForce;
     public float dashDuration;
 
- 
+    [Header("Settings")]
+    public bool useCameraForward = true;
+    public bool allowAllDirections = true;
+    public bool disableGravity = false;
+    public bool resetVel = true;
+
     [Header("Cooldown")]
     public float dashCd;
     private float dashCdTimer;
@@ -43,9 +49,17 @@ public class Dashing : MonoBehaviour
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
         pm.dashing = true;
+        Transform forwardT;
+        if (useCameraForward)
+            forwardT = PlayerVirtualCamera;
+        else
+            forwardT = orientation;
+        Vector3 direction = GetDirection(forwardT);
 
+        Vector3 forceToApply = direction * dashForce + orientation.up * dashUpwardForce;
 
-        Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;
+        if (disableGravity)
+            rb.useGravity = false;
 
         delayedForceToApply = forceToApply;
         Invoke(nameof(DelayedDashForce), 0.025f);
@@ -57,12 +71,35 @@ public class Dashing : MonoBehaviour
 
     private void DelayedDashForce()
     {
+        if (resetVel)
+            rb.velocity = Vector3.zero;
         rb.AddForce(delayedForceToApply, ForceMode.Impulse);
+
     }
 
 
     private void ResetDash()
     {
         pm.dashing = false;
+        if (disableGravity)
+            rb.useGravity = true;
     }
+
+    private Vector3 GetDirection(Transform forwardT)
+    {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        Vector3 direction = new Vector3();
+
+        if (allowAllDirections)
+            direction = forwardT.forward * verticalInput + forwardT.right * horizontalInput;
+        else
+            direction = forwardT.forward;
+
+        if(verticalInput == 0 && horizontalInput == 0)
+            direction = forwardT.forward;
+        return direction.normalized;
+    }
+
 }
