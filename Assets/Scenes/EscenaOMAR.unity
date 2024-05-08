@@ -15415,6 +15415,7 @@ GameObject:
   - component: {fileID: 1018604129}
   - component: {fileID: 1018604128}
   - component: {fileID: 1018604127}
+  - component: {fileID: 1018604132}
   m_Layer: 0
   m_Name: ENEMY XD
   m_TagString: Untagged
@@ -15434,7 +15435,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6172ebd08b4d9c64f81b330421d1ddfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObj: {fileID: 1019455911}
+  distanceToChase: 10
+  distanceToLose: 15
+  distanceToStop: 2
+  keepChasingTime: 5
+  velEnemy: 5
+  theRB: {fileID: 1018604132}
+  movementPlayer: {fileID: 1019455912}
 --- !u!136 &1018604128
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15523,6 +15530,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1018604132
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018604126}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1019455909
 GameObject:
   m_ObjectHideFlags: 0
@@ -15604,6 +15638,7 @@ MonoBehaviour:
   standCollider: {fileID: 1248211878}
   crouchCollider: {fileID: 1029146303}
   cameraPosition: {fileID: 2104256483}
+  gravityScale: 2
   maxSpeed: 10
   groundDrag: 2
   airDrag: 1
