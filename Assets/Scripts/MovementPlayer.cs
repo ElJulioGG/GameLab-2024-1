@@ -19,6 +19,8 @@ public class MovementPlayer : MonoBehaviour
 
 
     [Header("Movement")]
+    public static float globalGravity = -9.81f;
+    [SerializeField] public float gravityScale = 2.0f;
     private float moveSpeed;
     public float maxSpeed = 10f; // Set your desired max speed here
 
@@ -60,6 +62,8 @@ public class MovementPlayer : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    float defaultGravity;
 
     public MovementState state;
     public enum MovementState
@@ -162,7 +166,6 @@ public class MovementPlayer : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
-
     }
 
     private void Update()
@@ -236,7 +239,19 @@ public class MovementPlayer : MonoBehaviour
 
     }
 
-
+    private void ChangeGravity()
+    {
+        if(rb.velocity.y < 0 && !grounded)
+        {
+            rb.useGravity = false;
+            Vector3 gravity = globalGravity * gravityScale * Vector3.down;
+            rb.AddForce(gravity, ForceMode.Acceleration);
+        }
+        else
+        {
+            rb.useGravity = true;
+        }
+    }
     private void MovePlayer2()
     {
         // calculate movement direction

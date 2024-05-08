@@ -15604,14 +15604,13 @@ MonoBehaviour:
   standCollider: {fileID: 1248211878}
   crouchCollider: {fileID: 1029146303}
   cameraPosition: {fileID: 2104256483}
-  gravityScale: 1
   maxSpeed: 10
   groundDrag: 2
   airDrag: 1
   dashspeed: 500
-  dashSpeedChangeFactor: 10
+  dashSpeedChangeFactor: 0
   jumpForce: 600
-  jumpCooldown: 0.2
+  jumpCooldown: 1
   airMultiplier: 1
   readyToJump: 0
   walkSpeed: 100
@@ -15642,13 +15641,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 928965317}
-  PlayerVirtualCamera: {fileID: 80323988}
+  PlayerVirtualCamera: {fileID: 0}
   dashForce: 1000
-  dashUpwardForce: 10
+  dashUpwardForce: 0
   dashDuration: 0.25
   useCameraForward: 1
   allowAllDirections: 1
-  disableGravity: 1
+  disableGravity: 0
   resetVel: 1
   dashCd: 1.5
   dashKey: 101
