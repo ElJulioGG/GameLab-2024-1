@@ -1382,7 +1382,7 @@ PrefabInstance:
     - target: {fileID: 2586941818559238769, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
       propertyPath: shootingDelay
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2586941818559238769, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
@@ -1392,7 +1392,7 @@ PrefabInstance:
     - target: {fileID: 2586941818559238769, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
       propertyPath: currentShootingMode
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3270828330990965873, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
