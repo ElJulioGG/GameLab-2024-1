@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -13,10 +14,14 @@ public class EnemyController : MonoBehaviour
     private bool chasing;
     private Vector3 currentTarget;
 
+
     void Start()
     {
         startPoint = transform.position;
         currentTarget = startPoint;
+
+
+
     }
 
     void Update()
@@ -59,9 +64,12 @@ public class EnemyController : MonoBehaviour
 
             if (chaseCounter > 0)
             {
+
                 chaseCounter -= Time.deltaTime;
             }
         }
+
+
 
         // Movimiento hacia el punto actual
         Vector3 direction = (currentTarget - transform.position).normalized;
@@ -73,4 +81,7 @@ public class EnemyController : MonoBehaviour
             transform.LookAt(new Vector3(playerPosition.x, transform.position.y, playerPosition.z));
         }
     }
+
+
+
 }
