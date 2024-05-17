@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.Rendering;
 
 public class MovementPlayer : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class MovementPlayer : MonoBehaviour
     [Header("Movement")]
     private float moveSpeed;
     public float maxSpeed = 10f; // Set your desired max speed here
+    public float maxFallSpeed;
 
     public float groundDrag;
     public float airDrag;
@@ -165,6 +166,7 @@ public class MovementPlayer : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        grav = GetComponent<ConstantForce>();
         rb.freezeRotation = true;
 
         readyToJump = true;
@@ -191,6 +193,7 @@ public class MovementPlayer : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer2();
+        ChangeGravity();
     }
 
     private void MyInput()
@@ -244,13 +247,20 @@ public class MovementPlayer : MonoBehaviour
 
     private void ChangeGravity()
     {
-        if(rb.velocity.y < 0 && !grounded)
+        if (rb.velocity.y < 0 && !grounded)
         {
-            grav.relativeForce = new Vector3(0, gravityForce * gravityScale, 0);
+            if (grav.relativeForce.y > maxFallSpeed)
+            {
+                grav.relativeForce = new Vector3(0, grav.relativeForce.y * gravityScale, 0);
+                print(grav.relativeForce);
+            }
+
         }
         else
         {
             grav.relativeForce = new Vector3(0, gravityForce, 0);
+            print(grav.relativeForce);
+
         }
     }
     private void MovePlayer2()

@@ -6,7 +6,7 @@ public class TeleportPlatform : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    GameObject playerObject = GameObject.Find("Player").GetComponent<GameObject>();
+    public GameObject playerObject;
     public GameObject TpOut;
     void Start()
     {
