@@ -8,6 +8,7 @@ public class Dashing : MonoBehaviour
     public Transform orientation;
     public Transform PlayerVirtualCamera;
     private Rigidbody rb;
+    public ConstantForce grav;
     private MovementPlayer pm;
 
     [Header("Dashing")]
@@ -81,8 +82,8 @@ public class Dashing : MonoBehaviour
     private void ResetDash()
     {
         pm.dashing = false;
-        if (disableGravity)
-            rb.useGravity = true;
+        if (disableGravity) { }
+            //rb.useGravity = true;
     }
 
     private Vector3 GetDirection(Transform forwardT)
