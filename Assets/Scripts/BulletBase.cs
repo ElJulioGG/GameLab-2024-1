@@ -28,9 +28,7 @@ public class BulletBase : MonoBehaviour
     {
         ContactPoint contact = objectWeHit.contacts[0];
 
-        GameObject hole = Instantiate(
-            GlobalReferences.Instance.bulletImpactEffectPrefab, contact.point, Quaternion.LookRotation(contact.normal)
-            );
+        GameObject hole = Instantiate(GlobalReferences.Instance.bulletImpactEffectPrefab, contact.point, Quaternion.LookRotation(contact.normal));
 
         hole.transform.SetParent(objectWeHit.gameObject.transform);
 
