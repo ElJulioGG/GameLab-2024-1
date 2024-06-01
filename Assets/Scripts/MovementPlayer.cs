@@ -192,8 +192,10 @@ public class MovementPlayer : MonoBehaviour
 
     private void Update()
     {
-        // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
+        Vector3 boxCenter = transform.position + Vector3.down * (playerHeight * 0.5f);
+        Vector3 boxHalfExtents = new Vector3(0.45f, 0.1f, 0.45f); // Adjust the y value (0.1f) based on how close to the ground you want the check to be
+       /////////////////////////////////////player widht    playerwith
+        grounded = Physics.CheckBox(boxCenter, boxHalfExtents, Quaternion.identity, ground);
 
         MyInput();
         SpeedControl();
@@ -286,7 +288,7 @@ public class MovementPlayer : MonoBehaviour
             {
                 timer1 = timer1 + Time.deltaTime;
                 textoAirtime.text = timer1.ToString();
-                grav.relativeForce = new Vector3(0, -0.2f, 0);
+                grav.relativeForce = new Vector3(0, -981f, 0);
             }
             else
             {

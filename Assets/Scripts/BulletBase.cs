@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BulletBase : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioManager.instance.PlaySfx("shot");
+    }
     private void OnCollisionEnter(Collision objectWeHit)
     {
         if (objectWeHit.gameObject.CompareTag("Target"))
@@ -13,6 +17,7 @@ public class BulletBase : MonoBehaviour
             CreateBulletImpactEffect(objectWeHit);//aqui
 
             Destroy(gameObject);
+            AudioManager.instance.PlaySfx("explode");
         }
         if (objectWeHit.gameObject.CompareTag("Wall"))
         {
@@ -21,6 +26,7 @@ public class BulletBase : MonoBehaviour
             CreateBulletImpactEffect(objectWeHit);//aqui
 
             Destroy(gameObject);
+            AudioManager.instance.PlaySfx("explode");
         }
     }
 
