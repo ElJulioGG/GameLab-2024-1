@@ -34,6 +34,7 @@ public class MovementPlayer : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+    public float maxYSpeed;
     [SerializeField] bool readyToJump;
 
     public float walkSpeed;
@@ -83,8 +84,8 @@ public class MovementPlayer : MonoBehaviour
     float defaultGravity;
 
     public float airTime;
-    [SerializeField]private float timer1 = 0;
-    
+    [SerializeField] private float timer1 = 0;
+
     public MovementState state;
     public enum MovementState
     {
@@ -151,12 +152,14 @@ public class MovementPlayer : MonoBehaviour
             }
             else
             {
+                StopAllCoroutines();
                 moveSpeed = desiredMoveSpeed;
             }
         }
         lastdesiredMoveSpeed = desiredMoveSpeed;
         lastState = state;
     }
+
 
     private float speedChangeFactor;
     private IEnumerator SmoothlyLerpMoveSpeed()
@@ -194,7 +197,7 @@ public class MovementPlayer : MonoBehaviour
     {
         Vector3 boxCenter = transform.position + Vector3.down * (playerHeight * 0.5f);
         Vector3 boxHalfExtents = new Vector3(0.45f, 0.1f, 0.45f); // Adjust the y value (0.1f) based on how close to the ground you want the check to be
-       /////////////////////////////////////player widht    playerwith
+                                                                  /////////////////////////////////////player widht    playerwith
         grounded = Physics.CheckBox(boxCenter, boxHalfExtents, Quaternion.identity, ground);
 
         MyInput();
@@ -249,7 +252,7 @@ public class MovementPlayer : MonoBehaviour
         {
             if (IsCeilingAbove())
             {
-                
+
             }
             else
             {
@@ -292,7 +295,7 @@ public class MovementPlayer : MonoBehaviour
             }
             else
             {
-                
+
                 if (grav.relativeForce.y > maxFallSpeed)
                 {
                     grav.relativeForce = new Vector3(0, grav.relativeForce.y * gravityScale, 0);
@@ -318,7 +321,7 @@ public class MovementPlayer : MonoBehaviour
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-    
+
 
         // in air
         else if (!grounded)
@@ -329,7 +332,7 @@ public class MovementPlayer : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
-        
+
         //on slope
         if (OnSlope() && !exitingSlope)
         {
@@ -348,14 +351,18 @@ public class MovementPlayer : MonoBehaviour
             if (rb.velocity.magnitude > moveSpeed)
                 rb.velocity = rb.velocity.normalized * moveSpeed;
         }
-        
+
         // limit velocity if needed
         if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
-      
+
+        //limit Y speed
+        if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
+            rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
+
     }
 
     private void Jump()
@@ -538,6 +545,7 @@ public class MovementPlayer : MonoBehaviour
 //            }
 //            else
 //            {
+
 //                moveSpeed = desiredMoveSpeed;
 //            }
 //        }

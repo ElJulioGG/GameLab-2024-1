@@ -8,13 +8,17 @@ public class Dashing : MonoBehaviour
     public Transform orientation;
     public Transform PlayerVirtualCamera;
     private Rigidbody rb;
-    public ConstantForce grav;
     private MovementPlayer pm;
 
     [Header("Dashing")]
     public float dashForce;
     public float dashUpwardForce;
+    public float maxDashYSpeed;
     public float dashDuration;
+
+    [Header("CameraEffects")]
+    public playerCam cam;
+    public float dashFov;
 
     [Header("Settings")]
     public bool useCameraForward = true;
@@ -39,22 +43,28 @@ public class Dashing : MonoBehaviour
     {
         if (Input.GetKeyDown(dashKey))
             Dash();
+
         if (dashCdTimer > 0)
             dashCdTimer -= Time.deltaTime;
-       
     }
 
-  
     private void Dash()
     {
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
+
         pm.dashing = true;
+        pm.maxYSpeed = maxDashYSpeed;
+
+        cam.DoFov(dashFov);
+
         Transform forwardT;
+
         if (useCameraForward)
-            forwardT = PlayerVirtualCamera;
+            forwardT = PlayerVirtualCamera; /// where you're looking
         else
-            forwardT = orientation;
+            forwardT = orientation; /// where you're facing (no up or down)
+
         Vector3 direction = GetDirection(forwardT);
 
         Vector3 forceToApply = direction * dashForce + orientation.up * dashUpwardForce;
@@ -69,21 +79,23 @@ public class Dashing : MonoBehaviour
     }
 
     private Vector3 delayedForceToApply;
-
     private void DelayedDashForce()
     {
         if (resetVel)
             rb.velocity = Vector3.zero;
+
         rb.AddForce(delayedForceToApply, ForceMode.Impulse);
-
     }
-
 
     private void ResetDash()
     {
         pm.dashing = false;
-        if (disableGravity) { }
-            //rb.useGravity = true;
+        pm.maxYSpeed = 0;
+
+        cam.DoFov(85f);
+
+        if (disableGravity)
+            rb.useGravity = true;
     }
 
     private Vector3 GetDirection(Transform forwardT)
@@ -98,9 +110,9 @@ public class Dashing : MonoBehaviour
         else
             direction = forwardT.forward;
 
-        if(verticalInput == 0 && horizontalInput == 0)
+        if (verticalInput == 0 && horizontalInput == 0)
             direction = forwardT.forward;
+
         return direction.normalized;
     }
-
 }

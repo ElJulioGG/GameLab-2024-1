@@ -20639,9 +20639,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
-
-
-
 --- !u!1 &925440651
 GameObject:
   m_ObjectHideFlags: 0
@@ -20784,7 +20781,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 928965317}
+  - component: {fileID: 928965318}
   m_Layer: 0
   m_Name: Orientation
   m_TagString: Untagged
@@ -20792,13 +20789,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &928965317
-
+--- !u!4 &928965317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3094823215616508314, guid: aaf555ba6c440c34199299f687842a79,
     type: 3}
   m_PrefabInstance: {fileID: 5819247529857638542}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &928965318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928965316}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &941637120
 Mesh:
   m_ObjectHideFlags: 0
@@ -39798,6 +39809,41 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
         type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 80323989}
+    - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: dashFov
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: dashForce
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: dashDuration
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: maxDashYSpeed
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: disableGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: useCameraForward
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2445436486741826145, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
       propertyPath: PlayerVirtualCamera
       value: 
       objectReference: {fileID: 80323988}
@@ -39808,9 +39854,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7887594875077077338, guid: aaf555ba6c440c34199299f687842a79,
         type: 3}
+      propertyPath: maxSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887594875077077338, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: dashspeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887594875077077338, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7887594875077077338, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
       propertyPath: textoAirtime
       value: 
       objectReference: {fileID: 1694605708}
+    - target: {fileID: 7887594875077077338, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      propertyPath: dashSpeedChangeFactor
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8410321868030133925, guid: aaf555ba6c440c34199299f687842a79,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39870,6 +39936,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 928965318}
   - {fileID: 2015601705}
   - {fileID: 832575519}
   - {fileID: 1510596995}
