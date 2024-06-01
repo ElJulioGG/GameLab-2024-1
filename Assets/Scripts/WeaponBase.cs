@@ -25,6 +25,18 @@ public class WeaponBase : MonoBehaviour
     public float bulletVelocity = 30;
     public float bulletPrefabLifeTime = 3f; //bullet lasts 3secs max in the air
 
+    // Add here the animations (later)
+
+    // Loading
+    public float reloadTime;
+    public int magazineSize, bulletsLeft;
+    public bool isReloading;
+
+
+    // UI HUD
+    public TMPro.TextMeshProUGUI ammoDisplay; //Use TMPro. before the use of TMPGUI
+
+
     public enum ShootingMode //shooting modes
     {
         Single, 
@@ -38,6 +50,9 @@ public class WeaponBase : MonoBehaviour
     {
         readyToShoot = true;
         burstBulletsLeft = bulletsPerBurst;
+
+        bulletsLeft = magazineSize;
+
     }
 
 
@@ -69,11 +84,29 @@ public class WeaponBase : MonoBehaviour
             isShooting = Input.GetKeyDown(KeyCode.Mouse0);
         }
 
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false)
+        {
+            Reload();
+        }
+
+        // Reload automatically when magazine is empty
+        if (readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
+        {
+            Reload();
+        }
+
         if (readyToShoot && isShooting)
         {
             burstBulletsLeft = bulletsPerBurst;
             FireWeapon();
         }
+
+        if (AmmoManager.Instance.ammoDisplay != null)
+        {
+            AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize/bulletsPerBurst}";   
+        }
+
+
     }
 
     private void FixedUpdate() // No cambia NADA 
@@ -87,6 +120,8 @@ public class WeaponBase : MonoBehaviour
     // Will update as we advance
     private void FireWeapon()
     {
+        bulletsLeft--;
+
         readyToShoot = false; // Prevent issues with multiple shots
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
         
@@ -115,6 +150,18 @@ public class WeaponBase : MonoBehaviour
             burstBulletsLeft--;
             Invoke("FireWeapon", shootingDelay);
         }
+    }
+
+    private void Reload()
+    {
+        isReloading = true;
+        Invoke("ReloadCompleted", reloadTime);
+    }
+
+    private void ReloadCompleted()
+    {
+        bulletsLeft = magazineSize;
+        isReloading = false;
     }
 
     private void ResetShot()
