@@ -23,7 +23,11 @@ public class MovementPlayer : MonoBehaviour
 
 
     [Header("Movement")]
-    private float moveSpeed;
+    [SerializeField] public float horizontalVelocity;
+    [SerializeField] public float verticalVelocity;
+    [SerializeField] public float velocityX;
+    [SerializeField] public float velocityZ;
+    [SerializeField] private float moveSpeed;
     public float maxSpeed = 10f; // Set your desired max speed here
     public float maxFallSpeed;
 
@@ -200,22 +204,25 @@ public class MovementPlayer : MonoBehaviour
                                                                   /////////////////////////////////////player widht    playerwith
         grounded = Physics.CheckBox(boxCenter, boxHalfExtents, Quaternion.identity, ground);
 
+        
         MyInput();
         SpeedControl();
         StateHandler();
-
+        
         // handle drag
         if (grounded)
             rb.drag = groundDrag;
         else
             rb.drag = airDrag;
-
+        
     }
 
     private void FixedUpdate()
     {
+        CalculateVelocity();
         MovePlayer2();
         ChangeGravity();
+        
     }
     private bool IsCeilingAbove()
     {
@@ -299,7 +306,7 @@ public class MovementPlayer : MonoBehaviour
                 if (grav.relativeForce.y > maxFallSpeed)
                 {
                     grav.relativeForce = new Vector3(0, grav.relativeForce.y * gravityScale, 0);
-                    print(grav.relativeForce);
+                    //print(grav.relativeForce);
                 }
             }
 
@@ -307,7 +314,7 @@ public class MovementPlayer : MonoBehaviour
         else
         {
             grav.relativeForce = new Vector3(0, gravityForce, 0);
-            print(grav.relativeForce);
+            //print(grav.relativeForce);
             timer1 = 0;
 
         }
@@ -341,6 +348,21 @@ public class MovementPlayer : MonoBehaviour
 
         //turn gravity off while on slope
         grav.enabled = !OnSlope();
+        
+
+    }
+    private void CalculateVelocity()
+    {
+        // Create a vector for the horizontal velocity (ignore the y component)
+        Vector3 horizontalVelocityTemp = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+        // Calculate the magnitude of the horizontal velocity vector
+        horizontalVelocity = horizontalVelocityTemp.magnitude;
+
+        //vertical velocity 
+        verticalVelocity = rb.velocity.y;
+        velocityX = rb.velocity.x;
+        velocityZ = rb.velocity.z;
     }
     private void SpeedControl()
     {

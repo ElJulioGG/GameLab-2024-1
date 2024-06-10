@@ -26,7 +26,16 @@ public class BulletBase : MonoBehaviour
             CreateBulletImpactEffect(objectWeHit);//aqui
 
             Destroy(gameObject);
-            AudioManager.instance.PlaySfx("explode");
+           
+        }
+        if (objectWeHit.gameObject.CompareTag("Enemy"))
+        {
+            print("hit an enemy");
+
+            CreateBulletBloodImpactEffect(objectWeHit);//Efecto de sang
+
+            Destroy(gameObject);
+
         }
     }
 
@@ -37,8 +46,13 @@ public class BulletBase : MonoBehaviour
         GameObject hole = Instantiate(GlobalReferences.Instance.bulletImpactEffectPrefab, contact.point, Quaternion.LookRotation(contact.normal));
 
         hole.transform.SetParent(objectWeHit.gameObject.transform);
-
-
     }
+    void CreateBulletBloodImpactEffect(Collision objectWeHit)
+    {
+        ContactPoint contact = objectWeHit.contacts[0];
 
+        GameObject hole = Instantiate(GlobalReferences.Instance.bulletImpactBloodEfectTemp, contact.point, Quaternion.LookRotation(contact.normal));
+
+        hole.transform.SetParent(objectWeHit.gameObject.transform);
+    }
 }

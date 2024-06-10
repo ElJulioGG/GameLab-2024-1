@@ -15809,6 +15809,7 @@ MonoBehaviour:
   dashForce: 1000
   dashUpwardForce: 0
   maxDashYSpeed: 0
+  maxDashSpeed: 0
   dashDuration: 0.25
   cam: {fileID: 0}
   dashFov: 0
@@ -23949,7 +23950,7 @@ GameObject:
   - component: {fileID: 1637576314}
   m_Layer: 0
   m_Name: Enemy pro
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

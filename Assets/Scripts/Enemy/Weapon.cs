@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform player; // Referencia al jugador
+    public GameObject player; // Referencia al jugador
     public GameObject projectilePrefab; // Prefab del proyectil
     public Transform firePoint; // Punto desde donde se dispara
     public float fireRate = 1.5f; // Tiempo entre disparos
     public int velocityproyectile;
     private float nextFireTime; // Tiempo para el próximo disparo
-
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+    }
     private void Update()
     {
         // Calcular la dirección hacia el jugador
-        Vector3 direction = (player.position - firePoint.position).normalized;
+        Vector3 direction = (player.transform.position - firePoint.position).normalized;
 
         // Rotar el punto de disparo hacia la dirección del jugador
-        firePoint.LookAt(player.position);
+        firePoint.LookAt(player.transform.position);
 
         // Disparar al jugador
-        if (Vector3.Distance(transform.position, player.position) <= GetComponentInParent<Enemy2>().detectionRange &&
+        if (Vector3.Distance(transform.position, player.transform.position) <= GetComponentInParent<Enemy2>().detectionRange &&
             Time.time >= nextFireTime)
         {
             Shoot(direction);

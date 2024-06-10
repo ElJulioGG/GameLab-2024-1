@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
 {
-    public Transform player; // Referencia al jugador
+    public GameObject player; // Referencia al jugador
     public float detectionRange = 15f; // Rango de detección del jugador
     public float moveSpeed = 3f; // Velocidad de movimiento del enemigo
     public Transform weapon; // Referencia al arma
@@ -21,6 +22,7 @@ public class Enemy2 : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         enemyRenderer = GetComponent<Renderer>();
         initialPosition = transform.position; // Guardar la posición inicial del enemigo
         enemyRenderer.material = idleMaterial; // Establecer el material inicial
@@ -29,13 +31,13 @@ public class Enemy2 : MonoBehaviour
     private void Update()
     {
         // Detectar si el jugador está en el rango de visión
-        if (Vector3.Distance(transform.position, player.position) <= detectionRange)
+        if (Vector3.Distance(transform.position, player.transform.position) <= detectionRange)
         {
             returningToStart = false;
             enemyRenderer.material = alertMaterial; // Cambiar al material de alerta
 
             // Mirar hacia el jugador solo en el eje Y
-            Vector3 direction = (player.position - transform.position).normalized;
+            Vector3 direction = (player.transform.position - transform.position).normalized;
             Vector3 lookDirection = new Vector3(direction.x, 0, direction.z);
             Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
@@ -47,7 +49,7 @@ public class Enemy2 : MonoBehaviour
         {
             ReturnToStart();
         }
-        else
+        else if(patrolPoints != null && patrolPoints.Any(p => p != null))
         {
             Patrol();
         }

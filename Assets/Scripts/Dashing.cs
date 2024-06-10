@@ -14,7 +14,10 @@ public class Dashing : MonoBehaviour
     public float dashForce;
     public float dashUpwardForce;
     public float maxDashYSpeed;
+    public float maxDashSpeed;
     public float dashDuration;
+    public float maxSpeedChangeFactor = 5;
+    public float stackedSpeed = 10;
 
     [Header("CameraEffects")]
     public playerCam cam;
@@ -29,6 +32,7 @@ public class Dashing : MonoBehaviour
     [Header("Cooldown")]
     public float dashCd;
     private float dashCdTimer;
+    public bool speedBonus;
 
     [Header("Input")]
     public KeyCode dashKey = KeyCode.E;
@@ -46,8 +50,12 @@ public class Dashing : MonoBehaviour
 
         if (dashCdTimer > 0)
             dashCdTimer -= Time.deltaTime;
+        ChangeMaxSpeedFromDash();
     }
-
+    private void FixedUpdate()
+    {
+        
+    }
     private void Dash()
     {
         if (dashCdTimer > 0) return;
@@ -55,6 +63,7 @@ public class Dashing : MonoBehaviour
 
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;
+        pm.maxSpeed = maxDashSpeed+stackedSpeed-10;
 
         cam.DoFov(dashFov);
 
@@ -76,6 +85,8 @@ public class Dashing : MonoBehaviour
         Invoke(nameof(DelayedDashForce), 0.025f);
 
         Invoke(nameof(ResetDash), dashDuration);
+
+
     }
 
     private Vector3 delayedForceToApply;
@@ -89,15 +100,28 @@ public class Dashing : MonoBehaviour
 
     private void ResetDash()
     {
+        speedBonus = true;
         pm.dashing = false;
         pm.maxYSpeed = 0;
-
+        stackedSpeed = stackedSpeed + maxSpeedChangeFactor;
+        pm.maxSpeed = stackedSpeed;
         cam.DoFov(85f);
 
         if (disableGravity)
             rb.useGravity = true;
     }
-
+    private void ChangeMaxSpeedFromDash()
+    {
+        if (pm.horizontalVelocity < 10f && speedBonus == true)
+        {
+            print(pm.horizontalVelocity);
+            print(pm.velocityX);
+            print(pm.velocityZ);
+            stackedSpeed = 10f;
+            pm.maxSpeed = 10f;
+            speedBonus = false;
+        }
+    }
     private Vector3 GetDirection(Transform forwardT)
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
