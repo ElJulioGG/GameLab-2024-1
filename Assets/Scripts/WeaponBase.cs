@@ -67,6 +67,12 @@ public class WeaponBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bulletsLeft == 0 && isShooting)
+        {
+            SoundManager.Instance.emptyMagazineSound1911.Play();
+        }
+
+
         // Left mouse click
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -98,7 +104,7 @@ public class WeaponBase : MonoBehaviour
         // Reload automatically when magazine is empty
         if (readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
         {
-            Reload();
+            //Reload();
         }
 
         if (readyToShoot && isShooting && bulletsLeft > 0)
@@ -161,11 +167,13 @@ public class WeaponBase : MonoBehaviour
     private void Reload()
     {
         isReloading = true;
+        SoundManager.Instance.reloadingSound1.Play();
         Invoke("ReloadCompleted", reloadTime);
     }
 
     private void ReloadCompleted()
     {
+
         bulletsLeft = magazineSize;
         isReloading = false;
     }
