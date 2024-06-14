@@ -73,6 +73,12 @@ public class WeaponBase : MonoBehaviour
             FireWeapon();
         }
 
+        if (true)
+        {
+            
+        }
+
+
         if (currentShootingMode == ShootingMode.Auto)
         {
             // Holding Down Left Mouse Button
@@ -95,7 +101,7 @@ public class WeaponBase : MonoBehaviour
             Reload();
         }
 
-        if (readyToShoot && isShooting)
+        if (readyToShoot && isShooting && bulletsLeft > 0)
         {
             burstBulletsLeft = bulletsPerBurst;
             FireWeapon();
