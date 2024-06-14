@@ -76,9 +76,12 @@ public class WeaponBase : MonoBehaviour
         // Left mouse click
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            FireWeapon();
+            if (bulletsLeft > 0)
+            {
+                FireWeapon();
+            }
         }
-
+        
         if (true)
         {
             
@@ -100,6 +103,7 @@ public class WeaponBase : MonoBehaviour
         {
             Reload();
         }
+
 
         // Reload automatically when magazine is empty
         if (readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
