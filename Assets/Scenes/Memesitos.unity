@@ -1547,7 +1547,7 @@ PrefabInstance:
     - target: {fileID: 2586941818559238769, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
       propertyPath: magazineSize
-      value: 21
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2586941818559238769, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
