@@ -25,12 +25,24 @@ public class WeaponBase : MonoBehaviour
     public float bulletVelocity = 30;
     public float bulletPrefabLifeTime = 3f; //bullet lasts 3secs max in the air
 
+    public GameObject muzzleEffect;
+
     // Add here the animations (later)
+    private Animator animator;
 
     // Loading
     public float reloadTime;
     public int magazineSize, bulletsLeft;
     public bool isReloading;
+
+    // Weapon detector (for sound and other stuff)
+    public enum WeaponModel
+    {
+        M1911Pistol,
+        M48Rifle
+    }
+
+    public WeaponModel thisWeaponModel;
 
 
     // UI HUD
@@ -53,6 +65,7 @@ public class WeaponBase : MonoBehaviour
 
         bulletsLeft = magazineSize;
 
+        animator = GetComponent<Animator>();
     }
 
 
@@ -137,6 +150,8 @@ public class WeaponBase : MonoBehaviour
     private void FireWeapon()
     {
         bulletsLeft--;
+        muzzleEffect.GetComponent<ParticleSystem>().Play();
+        animator.SetTrigger("RECOIL"); // Always use the same name "RECOIL" as the parameter for the trigger
 
         readyToShoot = false; // Prevent issues with multiple shots
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
@@ -172,6 +187,9 @@ public class WeaponBase : MonoBehaviour
     {
         isReloading = true;
         SoundManager.Instance.reloadingSound1.Play();
+
+        animator.SetTrigger("RELOAD");
+
         Invoke("ReloadCompleted", reloadTime);
     }
 
