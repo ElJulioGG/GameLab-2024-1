@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 7005457192771769317}
   - component: {fileID: 2959222506375293307}
   - component: {fileID: 9069371450510067693}
-  - component: {fileID: 4394410822034611689}
   - component: {fileID: 8692846059075490801}
   - component: {fileID: 330213937449471747}
   - component: {fileID: 8702780855545003814}
   - component: {fileID: 5824597219263576455}
+  - component: {fileID: 1712205073846194898}
   m_Layer: 0
-  m_Name: BulletWeapon 1
+  m_Name: BulletWeaponPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,19 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4394410822034611689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3691354020716071328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acb19065296e7ca4e88a01f2566a5d50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 20
 --- !u!136 &8692846059075490801
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -276,3 +263,16 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1712205073846194898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691354020716071328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febfe112e9a68304aa50f5ba168b7294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 25

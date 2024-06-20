@@ -25,10 +25,10 @@ public class PlayerHealth : MonoBehaviour
     //   {
     //       TakeDamage(Random.Range(5, 10));
     //   }
-    //   if (Input.GetKeyDown(KeyCode.I))
-    //   {
-    //       RestoreHealth(Random.Range(5, 10));
-    //   }
+       if (Input.GetKeyDown(KeyCode.H))
+       {
+           RestoreHealth(Random.Range(5, 10));
+       }
     }
 
     public void UpdateHealthUI()
