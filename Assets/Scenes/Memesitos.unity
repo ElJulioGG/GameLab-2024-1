@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1547,7 +1547,7 @@ PrefabInstance:
     - target: {fileID: 2586941818559238769, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
       propertyPath: magazineSize
-      value: 21
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2586941818559238769, guid: 426f55ad80aa3fe4c885e4e54ebc434a,
         type: 3}
@@ -18877,7 +18877,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 1420117839}
   fireRate: 1
-  velocityproyectile: 3
+  velocityproyectile: 20
 --- !u!65 &870564114
 BoxCollider:
   m_ObjectHideFlags: 0
