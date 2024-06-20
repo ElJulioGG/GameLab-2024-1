@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
+    // Know which is the active weapon
+    public bool isActiveWeapon;
+
     //public Camera playerCamera; // Cambiar, no funciona en prefab
 
     // Shooting
@@ -35,6 +38,9 @@ public class WeaponBase : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
+    // Save the pposition of weapons in the player hands (for prefabs)
+    public Vector3 spawnPosition;
+    public Vector3 spawnRotation;
 
     //Damage
     public float damageAmount = 25f;
@@ -43,7 +49,8 @@ public class WeaponBase : MonoBehaviour
     public enum WeaponModel
     {
         M1911Pistol,
-        M48Rifle
+        M48Rifle,
+        BENNELLIM4Shotgun
     }
 
     public WeaponModel thisWeaponModel;
@@ -84,61 +91,63 @@ public class WeaponBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bulletsLeft == 0 && isShooting)
+        if (isActiveWeapon)
         {
-            SoundManager.Instance.emptyMagazineSound1911.Play();
-        }
-
-
-        // SINGLE SHOT
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (bulletsLeft > 0)
+            if (bulletsLeft == 0 && isShooting)
             {
+                SoundManager.Instance.emptyMagazineSound1911.Play();
+            }
+
+
+            // SINGLE SHOT
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (bulletsLeft > 0)
+                {
+                    FireWeapon();
+                }
+            }
+
+            if (true)
+            {
+
+            }
+
+
+            if (currentShootingMode == ShootingMode.Auto)
+            {
+                // Holding Down Left Mouse Button
+                isShooting = Input.GetKey(KeyCode.Mouse0);
+            }
+            else if (currentShootingMode == ShootingMode.Single || currentShootingMode == ShootingMode.Burst)
+            {
+                // Clicking Left Mouse Button Once
+                isShooting = Input.GetKeyDown(KeyCode.Mouse0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false)
+            {
+                Reload();
+            }
+
+
+            // Reload automatically when magazine is empty
+            if (readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
+            {
+                //Reload();
+            }
+            //AUTO SHOT
+            if (readyToShoot && isShooting && bulletsLeft > 0)
+            {
+                burstBulletsLeft = bulletsPerBurst;
                 FireWeapon();
             }
-        }
-        
-        if (true)
-        {
-            
-        }
 
-
-        if (currentShootingMode == ShootingMode.Auto)
-        {
-            // Holding Down Left Mouse Button
-            isShooting = Input.GetKey(KeyCode.Mouse0);
+            if (AmmoManager.Instance.ammoDisplay != null)
+            {
+                AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize / bulletsPerBurst}";
+            }
         }
-        else if(currentShootingMode == ShootingMode.Single || currentShootingMode == ShootingMode.Burst)
-        {
-            // Clicking Left Mouse Button Once
-            isShooting = Input.GetKeyDown(KeyCode.Mouse0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && isReloading == false)
-        {
-            Reload();
-        }
-
-
-        // Reload automatically when magazine is empty
-        if (readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
-        {
-            //Reload();
-        }
-        //AUTO SHOT
-        if (readyToShoot && isShooting && bulletsLeft > 0)
-        {
-            burstBulletsLeft = bulletsPerBurst;
-            FireWeapon();
-        }
-
-        if (AmmoManager.Instance.ammoDisplay != null)
-        {
-            AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize/bulletsPerBurst}";   
-        }
-
 
     }
 
