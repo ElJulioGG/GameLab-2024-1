@@ -6,16 +6,19 @@ public class ZombieController : MonoBehaviour
     public float detectionRange = 15f;
     public float attackRange = 2f;
     public float moveSpeed = 2f;
-    public float attackCooldown = 1.5f;
+    public float attackCooldown = 4.5f;
     public AudioClip attackSound;
     public Material attackMaterial;
     public Material defaultMaterial;
+    public float damageAmount = 10f;//daño del zombie
+
 
     //private //animator //animator;
     private AudioSource audioSource;
     private Renderer renderer;
     private float lastAttackTime;
     private bool isDead = false;
+    private PlayerHealth playerHealth;//referencia al jugador wa
 
     void Start()
     {
@@ -23,8 +26,15 @@ public class ZombieController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         renderer = GetComponent<Renderer>();
 
-        lastAttackTime = -attackCooldown;
+       
         renderer.material = defaultMaterial;
+
+        playerHealth = player.GetComponent<PlayerHealth>();
+        if (playerHealth == null)
+        {
+            Debug.LogError("PlayerHealth script not found on player.");
+        }
+        lastAttackTime = -attackCooldown;
     }
 
     void Update()
@@ -49,7 +59,7 @@ public class ZombieController : MonoBehaviour
 
     void ChasePlayer()
     {
-        Debug.Log("Cambiando a estado: Perseguir");
+        //Debug.Log("Cambiando a estado: Perseguir");
         //animator.SetBool("isWalking", true);
         //animator.SetBool("isAttacking", false);
 
@@ -62,7 +72,7 @@ public class ZombieController : MonoBehaviour
 
     void AttackPlayer()
     {
-        Debug.Log("Cambiando a estado: Atacar");
+        //Debug.Log("Cambiando a estado: Atacar");
         //animator.SetBool("isWalking", false);
 
         if (Time.time - lastAttackTime >= attackCooldown)
@@ -72,16 +82,22 @@ public class ZombieController : MonoBehaviour
             PlayAttackSound();
             ChangeColorToAttack();
             // Aquí puedes añadir la lógica para causar daño al jugador.
+            if (player.tag == "Player" && playerHealth != null)
+            {
+                playerHealth.TakeDamage(damageAmount);
+            }
         }
-        else
-        {
-            //animator.SetBool("isAttacking", false);
-        }
+        
+
+        //else
+        //{
+        //    //animator.SetBool("isAttacking", false);
+        //}
     }
 
     void Idle()
     {
-        Debug.Log("Cambiando a estado: Idle");
+        //Debug.Log("Cambiando a estado: Idle");
         //animator.SetBool("isWalking", false);
         //animator.SetBool("isAttacking", false);
 

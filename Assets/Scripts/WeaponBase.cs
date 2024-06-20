@@ -32,6 +32,8 @@ public class WeaponBase : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
+    //Damage
+    public float damageAmount = 25f;
 
     // UI HUD
     public TMPro.TextMeshProUGUI ammoDisplay; //Use TMPro. before the use of TMPGUI
