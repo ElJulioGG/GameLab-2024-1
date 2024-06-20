@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponBase : MonoBehaviour
 {
-    public Camera playerCamera;
+    //public Camera playerCamera; // Cambiar, no funciona en prefab
 
     // Shooting
     public bool isShooting, readyToShoot;
@@ -75,7 +75,7 @@ public class WeaponBase : MonoBehaviour
 
     private void Start()
     {
-       // player = GameObject.Find("player");
+        //playerCamera = GameObject.FindWithTag("Main").GetComponent<Camera>();
     }
     // Update is called once per frame
     void Update()
@@ -209,7 +209,7 @@ public class WeaponBase : MonoBehaviour
     public Vector3 CalculateDirectionAndSpread()
     {
         // Shooting from the middle of the screen to check where are we poiting at
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)); // Cambiar, no funciona en prefab
         RaycastHit hit;
 
         Vector3 targetPoint;
