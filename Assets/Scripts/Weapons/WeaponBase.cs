@@ -35,6 +35,10 @@ public class WeaponBase : MonoBehaviour
     public int magazineSize, bulletsLeft;
     public bool isReloading;
 
+
+    //Damage
+    public float damageAmount = 25f;
+
     // Weapon detector (for sound and other stuff)
     public enum WeaponModel
     {
