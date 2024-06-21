@@ -122,7 +122,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // Pausa otros componentes del juego (asume que tienes un método global para esto)
-        Time.timeScale = 0f; // Pausa todo el juego
+        Time.timeScale = 1f; // Pausa todo el juego
 
         // Opcional: desactivar componentes de la cámara
         var cameraComponents = Camera.main.GetComponents<MonoBehaviour>();

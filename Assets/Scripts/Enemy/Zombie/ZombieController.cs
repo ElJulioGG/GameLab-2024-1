@@ -28,7 +28,7 @@ public class ZombieController : MonoBehaviour
 
        
         renderer.material = defaultMaterial;
-
+        player = GameObject.Find("Player").transform;
         playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth == null)
         {

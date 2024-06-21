@@ -2395,6 +2395,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &53051994
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27648,6 +27649,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &666492516
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30948,6 +30950,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &752756870
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -35107,6 +35110,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &843166893
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -44945,6 +44949,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5819247529857638542}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1019455915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019455909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0617cec861dddf49a6a30aa91535a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  chipSeed: 2
+  frontHealthBar: {fileID: 0}
+  backHealthBar: {fileID: 0}
+  deathMenuCanvas: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1001 &1020132706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51770,6 +51792,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &1200746745
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -61893,6 +61916,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &1468767529
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -71199,6 +71223,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &1672691162
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -80693,6 +80718,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &1886806775
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -81561,6 +81587,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 5985ab0263e567747bf7582c9c9aba53, type: 3}
   attackMaterial: {fileID: 2100000, guid: d68b6d8ae69348b4b98b70e4e69ff02a, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 8a7cbc8ba3caecb4da7933d348cc3264, type: 2}
+  damageAmount: 10
 --- !u!136 &1909004955
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -94121,7 +94148,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7207596306347524904, guid: aaf555ba6c440c34199299f687842a79,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1019455915}
   m_SourcePrefab: {fileID: 100100000, guid: aaf555ba6c440c34199299f687842a79, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

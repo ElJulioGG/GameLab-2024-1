@@ -24,10 +24,12 @@ public class MenuGameOver : MonoBehaviour
     // Start is called before the first frame update
     public void Reiniciar() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        print("Funciona");
     }
 
     public void MenuInicial(string nombre) {
         SceneManager.LoadScene(nombre);
+        print("Funciona");
     }
 
 }
