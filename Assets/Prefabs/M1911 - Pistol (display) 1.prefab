@@ -4960,8 +4960,8 @@ MonoBehaviour:
   magazineSize: 7
   bulletsLeft: 0
   isReloading: 0
-  spawnPosition: {x: 0.169, y: -0.093, z: 0.3860273}
-  spawnRotation: {x: 0, y: 185, z: 0}
+  spawnPosition: {x: 0.2132, y: -0.102, z: 0.3731}
+  spawnRotation: {x: 0, y: 175, z: 0}
   damageAmount: 25
   thisWeaponModel: 0
   ammoDisplay: {fileID: 0}
