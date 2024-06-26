@@ -57,20 +57,20 @@ public class WeaponManager : MonoBehaviour
 
     public void PickupWeapon(GameObject pickedupWeapon)
     {
-        //AddWeaponIntoActiveSlot(pickedupWeapon);
-        Destroy(pickedupWeapon);
+        AddWeaponIntoActiveSlot(pickedupWeapon);
+        //Destroy(pickedupWeapon);
     }
 
     private void AddWeaponIntoActiveSlot(GameObject pickedupWeapon)
     {
-        //pickedupWeapon.transform.SetParent(activeWeaponSlot.transform, false);
-        //
-        //WeaponBase weapon = pickedupWeapon.GetComponent<WeaponBase>();
-        //
-        //pickedupWeapon.transform.localPosition = new Vector3(weapon.spawnPosition.x, weapon.spawnPosition.y, weapon.spawnPosition.z);
-        //pickedupWeapon.transform.localRotation = Quaternion.Euler(weapon.spawnRotation.x, weapon.spawnRotation.y, weapon.spawnRotation.z);
-        //
-        //weapon.isActiveWeapon = true;
+        pickedupWeapon.transform.SetParent(activeWeaponSlot.transform, false);
+        
+        WeaponBase weapon = pickedupWeapon.GetComponent<WeaponBase>();
+        
+        pickedupWeapon.transform.localPosition = new Vector3(weapon.spawnPosition.x, weapon.spawnPosition.y, weapon.spawnPosition.z);
+        pickedupWeapon.transform.localRotation = Quaternion.Euler(weapon.spawnRotation.x, weapon.spawnRotation.y, weapon.spawnRotation.z);
+        
+        weapon.isActiveWeapon = true;
     }
 
     public void SwitchActiveSlot(int slotNumber) //Wep 1->Slot 0, Wep 2->Slot 1, Wep 3->Slot 2     {
