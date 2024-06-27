@@ -5079,7 +5079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cab9efe5b8f3b4eb447fa0cfbb5c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActiveWeapon: 0
+  isActiveWeapon: 1
   isShooting: 0
   readyToShoot: 0
   shootingDelay: 0.1
@@ -5097,9 +5097,9 @@ MonoBehaviour:
   magazineSize: 5
   bulletsLeft: 0
   isReloading: 0
-  spawnPosition: {x: 0, y: 0, z: 0}
-  spawnRotation: {x: 0, y: 0, z: 0}
-  damageAmount: 40
+  spawnPosition: {x: 0.1856, y: -0.0889, z: 0.5538}
+  spawnRotation: {x: 3, y: 170, z: 0}
+  damageAmount: 50
   thisWeaponModel: 2
   ammoDisplay: {fileID: 0}
   currentShootingMode: 0

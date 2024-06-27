@@ -150,8 +150,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cab9efe5b8f3b4eb447fa0cfbb5c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveWeapon: 0
+  isShooting: 0
+  readyToShoot: 0
+  shootingDelay: 2
+  bulletsPerBurst: 3
+  burstBulletsLeft: 0
+  spreadIntensity: 0
   bulletPrefab: {fileID: 3691354020716071328, guid: 807c3fdc48c65014ea9764e3d4658f70,
     type: 3}
   bulletSpawn: {fileID: 8234805171120419727}
   bulletVelocity: 30
   bulletPrefabLifeTime: 3
+  muzzleEffect: {fileID: 0}
+  reloadTime: 0
+  magazineSize: 0
+  bulletsLeft: 0
+  isReloading: 0
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnRotation: {x: 0, y: 0, z: 0}
+  damageAmount: 25
+  thisWeaponModel: 0
+  ammoDisplay: {fileID: 0}
+  currentShootingMode: 0
+  offsetX: 0
+  offsetY: 0
+  offsetZ: 0

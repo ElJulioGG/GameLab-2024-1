@@ -334,6 +334,11 @@ MonoBehaviour:
   standCollider: {fileID: 4212414364745480175}
   crouchCollider: {fileID: 2171404784144756054}
   cameraPosition: {fileID: 5141859678079390708}
+  horizontalVelocity: 0
+  verticalVelocity: 0
+  velocityX: 0
+  velocityZ: 0
+  moveSpeed: 0
   maxSpeed: 10
   maxFallSpeed: -100000
   groundDrag: 1
@@ -343,6 +348,7 @@ MonoBehaviour:
   jumpForce: 600
   jumpCooldown: 0.2
   airMultiplier: 1
+  maxYSpeed: 0
   readyToJump: 0
   walkSpeed: 100
   sprintSpeed: 200
@@ -384,15 +390,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 3094823215616508314}
   PlayerVirtualCamera: {fileID: 0}
-  grav: {fileID: 0}
   dashForce: 10000
   dashUpwardForce: 10
+  maxDashYSpeed: 0
+  maxDashSpeed: 0
   dashDuration: 0.1
+  maxSpeedChangeFactor: 5
+  stackedSpeed: 10
+  cam: {fileID: 0}
+  dashFov: 0
   useCameraForward: 1
   allowAllDirections: 1
   disableGravity: 1
   resetVel: 1
   dashCd: 1.5
+  speedBonus: 0
   dashKey: 101
 --- !u!75 &7368631551750120752
 ConstantForce:
