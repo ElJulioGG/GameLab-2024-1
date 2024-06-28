@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ebc24bfdd949845b5b4b4ba79e30c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreEscena: Memesitos
+  nombreEscena: Memesitos - New
 --- !u!4 &557578711
 Transform:
   m_ObjectHideFlags: 0
