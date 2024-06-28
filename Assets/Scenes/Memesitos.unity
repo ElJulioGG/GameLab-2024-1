@@ -1806,8 +1806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ec99fbd7f0bd747af485e461b636e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  senseX: 400
-  senseY: 400
+  senseX: 2
+  senseY: 2
   orientation: {fileID: 928965317}
 --- !u!1 &82573320
 GameObject:
@@ -21581,13 +21581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6172ebd08b4d9c64f81b330421d1ddfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToChase: 10
-  distanceToLose: 15
-  distanceToStop: 2
-  keepChasingTime: 5
-  velEnemy: 5
-  theRB: {fileID: 0}
-  movementPlayer: {fileID: 0}
 --- !u!136 &1018604128
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -40873,7 +40866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cab9efe5b8f3b4eb447fa0cfbb5c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 80323987}
+  isActiveWeapon: 0
   isShooting: 0
   readyToShoot: 0
   shootingDelay: 0.13
@@ -40885,10 +40878,15 @@ MonoBehaviour:
   bulletSpawn: {fileID: 2008804464}
   bulletVelocity: 75
   bulletPrefabLifeTime: 3
+  muzzleEffect: {fileID: 0}
   reloadTime: 1.5
   magazineSize: 7
   bulletsLeft: 0
   isReloading: 0
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnRotation: {x: 0, y: 0, z: 0}
+  damageAmount: 25
+  thisWeaponModel: 0
   ammoDisplay: {fileID: 0}
   currentShootingMode: 2
   offsetX: 0.5
